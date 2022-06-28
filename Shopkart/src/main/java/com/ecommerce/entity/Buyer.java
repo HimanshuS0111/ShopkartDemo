@@ -29,6 +29,7 @@ public class Buyer {
 	private String username;
 	private String password;
 	private String mobileNo;
+	private Double wallet;
 	
 	@Column(name = "place_order_id")
 	private long placeOrderId;

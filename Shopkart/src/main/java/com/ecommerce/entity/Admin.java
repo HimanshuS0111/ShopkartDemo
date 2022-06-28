@@ -14,11 +14,6 @@ import lombok.ToString;
 
 @Entity
 @Table(name="administrator")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 public class Admin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
