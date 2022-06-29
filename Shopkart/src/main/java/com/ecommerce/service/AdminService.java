@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.entity.Admin;
+import com.ecommerce.entity.Buyer;
 import com.ecommerce.entity.Seller;
 import com.ecommerce.repo.AdminRepo;
 import com.ecommerce.repo.BuyerRepo;
@@ -33,6 +34,38 @@ public class AdminService {
 			return new ResponseEntity<String>("Enter Password.... ",HttpStatus.BAD_REQUEST);
 			}
 		Admin seller = adminRepo.validate(username, password);
+		if (seller != null) {
+			return new ResponseEntity<String>("Successfully Login!!",HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>("Login Failed..Retry Again with Valid Credentials",HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
+	public ResponseEntity<String> loginbuyer(String username, String password) {
+		if (username.equals(null) || username.equals("")) {
+			return new ResponseEntity<String>("Enter Username.... ",HttpStatus.BAD_REQUEST);
+		}
+		if (password.equals(null) || password.equals("")) {
+			return new ResponseEntity<String>("Enter Password.... ",HttpStatus.BAD_REQUEST);
+			}
+		Buyer buyer = buyerrepo.validate(username, password);
+		if (buyer != null) {
+			return new ResponseEntity<String>("Successfully Login!!",HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>("Login Failed..Retry Again with Valid Credentials",HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
+	public ResponseEntity<String> loginseller(String username, String password) {
+		if (username.equals(null) || username.equals("")) {
+			return new ResponseEntity<String>("Enter Username.... ",HttpStatus.BAD_REQUEST);
+		}
+		if (password.equals(null) || password.equals("")) {
+			return new ResponseEntity<String>("Enter Password.... ",HttpStatus.BAD_REQUEST);
+			}
+		Seller seller = sellerrepo.validate(username, password);
 		if (seller != null) {
 			return new ResponseEntity<String>("Successfully Login!!",HttpStatus.OK);
 		} else {

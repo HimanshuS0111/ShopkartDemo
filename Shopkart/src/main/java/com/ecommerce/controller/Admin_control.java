@@ -27,5 +27,18 @@ AdminService adservice;
 		return adservice.sellerApproval(sellerId);
 	}
 	
+	//buyer login
+	@GetMapping("/buyer/login")
+	public ResponseEntity<String> loginbuyer(@RequestParam String username ,@RequestParam String password ) {
+		return adservice.loginbuyer(username,password);
+	}
+	
+	//seller login
+	@GetMapping("/seller/login")
+	public ResponseEntity<String> loginseller(@RequestParam String username ,@RequestParam String password ) {
+		return adservice.loginseller(username,password);
+	}
+	
+	
 
 }
