@@ -10,26 +10,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.entity.Buyer;
-import com.ecommerce.entity.Seller;
-import com.ecommerce.repo.SellerRepo;
+import com.ecommerce.repo.BuyerRepo;
 
 @RestController
-@RequestMapping("/seller")
-public class Seller_control {
-@Autowired
-SellerRepo sellrepo;
+@RequestMapping("/buyer")
+public class Buyer_control {
+	@Autowired
+	BuyerRepo buyrepo;
 
-@PostMapping("/add")
-public List<Seller> adddata(@RequestBody Seller ab){
-	sellrepo.save(ab);
-	return sellrepo.findAll();
+	@PostMapping("/add")
+	public List<Buyer> adddata(@RequestBody Buyer ab){
+		buyrepo.save(ab);
+		return buyrepo.findAll();
+		}
+	@GetMapping("/")
+	public List<Buyer> showdata(){
+		return buyrepo.findAll();
+		
 	}
-@GetMapping("/")
-public List<Seller> showdata(){
-	return sellrepo.findAll();
-	
-}
-
-
-
 }

@@ -27,45 +27,4 @@ public class Category {
 	@OneToMany
 	@JoinColumn(name = "category_id")
 	private List<Product> products;
-	
-	public Category() {
-		
-	}
-
-	public Category(Long categoryId, String category, List<Product> products) {
-		super();
-		this.categoryId = categoryId;
-		this.category = category;
-		this.products = products;
-	}
-
-	public Long getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(Long categoryId) {
-		this.categoryId = categoryId;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
-
-	@Override
-	public String toString() {
-		return "Category [categoryId=" + categoryId + ", category=" + category + ", products=" + products + "]";
-	}
-	
 }

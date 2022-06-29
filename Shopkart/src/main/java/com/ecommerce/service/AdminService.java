@@ -44,7 +44,7 @@ public class AdminService {
 		Seller entity = sellerrepo.findById(sellerId).get();
 		entity.setIsApproved("Yes");
 		sellerrepo.save(entity);
-		return new ResponseEntity("Success Updated", HttpStatus.OK);
+		return new ResponseEntity("Seller Approved", HttpStatus.OK);
 		}
 	
 	
