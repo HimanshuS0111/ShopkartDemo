@@ -20,36 +20,17 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long productId;
 	private String productName;
-	private String category;
 	private String brand;
 	private int quantity;
-	private String isApproved;
 	private String description;
 	private String productPrice;
 	private Long sellerId;
-	private String active;
 
 	@Column(name="category_id")
 	private Long categoryId;
 	
 	public Product() {
 		
-	}
-
-	public Product(Long productId, String productName, String category, String brand, int quantity, String isApproved,
-			String description, String productPrice, Long sellerId, String active, Long categoryId) {
-		super();
-		this.productId = productId;
-		this.productName = productName;
-		this.category = category;
-		this.brand = brand;
-		this.quantity = quantity;
-		this.isApproved = isApproved;
-		this.description = description;
-		this.productPrice = productPrice;
-		this.sellerId = sellerId;
-		this.active = active;
-		this.categoryId = categoryId;
 	}
 
 	public Long getProductId() {
@@ -68,14 +49,6 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	public String getBrand() {
 		return brand;
 	}
@@ -90,14 +63,6 @@ public class Product {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-
-	public String getIsApproved() {
-		return isApproved;
-	}
-
-	public void setIsApproved(String isApproved) {
-		this.isApproved = isApproved;
 	}
 
 	public String getDescription() {
@@ -124,14 +89,6 @@ public class Product {
 		this.sellerId = sellerId;
 	}
 
-	public String getActive() {
-		return active;
-	}
-
-	public void setActive(String active) {
-		this.active = active;
-	}
-
 	public Long getCategoryId() {
 		return categoryId;
 	}
@@ -140,12 +97,26 @@ public class Product {
 		this.categoryId = categoryId;
 	}
 
+	public Product(Long productId, String productName, String brand, int quantity, String description,
+			String productPrice, Long sellerId, Long categoryId) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.brand = brand;
+		this.quantity = quantity;
+		this.description = description;
+		this.productPrice = productPrice;
+		this.sellerId = sellerId;
+		this.categoryId = categoryId;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", productName=" + productName + ", category=" + category
-				+ ", brand=" + brand + ", quantity=" + quantity + ", isApproved=" + isApproved + ", description="
-				+ description + ", productPrice=" + productPrice + ", sellerId=" + sellerId + ", active=" + active
-				+ ", categoryId=" + categoryId + "]";
+		return "Product [productId=" + productId + ", productName=" + productName + ", brand=" + brand + ", quantity="
+				+ quantity + ", description=" + description + ", productPrice=" + productPrice + ", sellerId="
+				+ sellerId + ", categoryId=" + categoryId + "]";
 	}
+
+	
 	
 }
