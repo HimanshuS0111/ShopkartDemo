@@ -5,8 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,8 +32,7 @@ public class PlaceOrder {
 	private String orderStatus;
 	private long buyerId;
 	
-	@OneToOne
-	@JoinColumn(name = "place_order_id")
+	@ManyToOne
 	Buyer buyerDetail;
 	
 	public PlaceOrder() {
@@ -104,7 +107,7 @@ public class PlaceOrder {
 	public void setBuyerId(long buyerId) {
 		this.buyerId = buyerId;
 	}
-
+    @JsonBackReference
 	public Buyer getBuyerDetail() {
 		return buyerDetail;
 	}
@@ -119,6 +122,6 @@ public class PlaceOrder {
 				+ city + ", pincode=" + pincode + ", orderStatus=" + orderStatus + ", buyerId=" + buyerId
 				+ ", buyerDetail=" + buyerDetail + "]";
 	}
-	
+
 	
 }
