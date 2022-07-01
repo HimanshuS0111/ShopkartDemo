@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +27,45 @@ public class Category {
 	private Long categoryId;
 	private String category;
 
-	@OneToMany
-	@JoinColumn(name = "category_id")
+	@OneToMany(mappedBy="category")
 	private List<Product> products;
+
+	Category(){}
+	public Long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+    @JsonManagedReference
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [categoryId=" + categoryId + ", category=" + category + ", products=" + products + "]";
+	}
+
+	public Category(Long categoryId, String category, List<Product> products) {
+		super();
+		this.categoryId = categoryId;
+		this.category = category;
+		this.products = products;
+	}
+	
+	
 }

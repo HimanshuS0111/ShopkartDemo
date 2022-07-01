@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ecommerce.entity.Buyer;
 import com.ecommerce.entity.Seller;
 import com.ecommerce.repo.SellerRepo;
 
@@ -24,6 +23,7 @@ public List<Seller> adddata(@RequestBody Seller ab){
 	sellrepo.save(ab);
 	return sellrepo.findAll();
 	}
+
 @GetMapping("/")
 public List<Seller> showdata(){
 	return sellrepo.findAll();

@@ -27,6 +27,12 @@ AdminService adservice;
 		return adservice.sellerApproval(sellerId);
 	}
 	
+	//approve place order
+	@PutMapping("/approve/order")
+	public ResponseEntity<String> orderApproval(@RequestParam Long placeOrderId) {
+		return adservice.orderApproval(placeOrderId);
+	}
+	
 	//buyer login
 	@GetMapping("/buyer/login")
 	public ResponseEntity<String> loginbuyer(@RequestParam String username ,@RequestParam String password ) {

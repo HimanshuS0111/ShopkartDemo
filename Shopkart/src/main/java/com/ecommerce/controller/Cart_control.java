@@ -10,31 +10,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import com.ecommerce.entity.Product;
-import com.ecommerce.repo.ProductRepo;
+import com.ecommerce.entity.Cart;
+import com.ecommerce.repo.CartRepo;
 
 @RestController
-@RequestMapping("/product")
-public class Product_control {
+@RequestMapping("/cart")
+public class Cart_control {
 	@Autowired
-	ProductRepo prorepo;
-
+	CartRepo cartrepo;
 	@PostMapping("/add")
-	public List<Product> adddata(@RequestBody Product ab){
-		prorepo.save(ab);
-		return prorepo.findAll();
+	public List<Cart> adddata(@RequestBody Cart ab){
+		cartrepo.save(ab);
+		return cartrepo.findAll();
 		}
-	
-	@PutMapping("/update")
-	public List<Product> updatedata(@RequestBody Product ab){
-		prorepo.save(ab);
-		return prorepo.findAll();
-		}
+
 	@GetMapping("/")
-	public List<Product> showdata(){
-		return prorepo.findAll();
+	public List<Cart> showdata(){
+		return cartrepo.findAll();
 		
 	}
-
+	
+	@PutMapping("/update")
+	public List<Cart> updatedata(@RequestBody Cart ab){
+		cartrepo.save(ab);
+		return cartrepo.findAll();
+		}
 }

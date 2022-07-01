@@ -10,31 +10,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import com.ecommerce.entity.Product;
-import com.ecommerce.repo.ProductRepo;
+import com.ecommerce.entity.PlaceOrder;
+import com.ecommerce.repo.PlaceOrderRepo;
 
 @RestController
-@RequestMapping("/product")
-public class Product_control {
-	@Autowired
-	ProductRepo prorepo;
+@RequestMapping("/placeorder")
+public class Placeorder_control {
 
+	@Autowired
+	PlaceOrderRepo po;
+	
+	@GetMapping("/")
+	public List<PlaceOrder> showdata(){
+		return po.findAll();
+	}
+	
 	@PostMapping("/add")
-	public List<Product> adddata(@RequestBody Product ab){
-		prorepo.save(ab);
-		return prorepo.findAll();
-		}
+	public List<PlaceOrder> adddata(@RequestBody PlaceOrder ab){
+		po.save(ab);
+		return po.findAll();
+	}
 	
 	@PutMapping("/update")
-	public List<Product> updatedata(@RequestBody Product ab){
-		prorepo.save(ab);
-		return prorepo.findAll();
-		}
-	@GetMapping("/")
-	public List<Product> showdata(){
-		return prorepo.findAll();
-		
+	public List<PlaceOrder> updatedata(@RequestBody PlaceOrder ab){
+		po.save(ab);
+		return po.findAll();
 	}
-
 }

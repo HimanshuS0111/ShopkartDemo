@@ -1,17 +1,18 @@
 package com.ecommerce.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+
 
 @Entity
 @Table(name="register_buyer")
@@ -26,23 +27,14 @@ public class Buyer {
 	private String mobileNo;
 	private Double wallet;
 	
-	@Column(name = "place_order_id")
-	private long placeOrderId;
+	@OneToMany(mappedBy = "buyerDetail")
+	private List<PlaceOrder> placeorder;
+	
+	@OneToMany(mappedBy = "buyer")
+	private List<Cart> cart;
 	
 	public Buyer() {
 		
-	}
-
-	public Buyer(Long buyerId, String buyerName, String username, String password, String mobileNo, Double wallet,
-			long placeOrderId) {
-		super();
-		this.buyerId = buyerId;
-		this.buyerName = buyerName;
-		this.username = username;
-		this.password = password;
-		this.mobileNo = mobileNo;
-		this.wallet = wallet;
-		this.placeOrderId = placeOrderId;
 	}
 
 	public Long getBuyerId() {
@@ -92,19 +84,43 @@ public class Buyer {
 	public void setWallet(Double wallet) {
 		this.wallet = wallet;
 	}
-
-	public long getPlaceOrderId() {
-		return placeOrderId;
+	@JsonManagedReference
+	public List<PlaceOrder> getPlaceorder() {
+		return placeorder;
 	}
 
-	public void setPlaceOrderId(long placeOrderId) {
-		this.placeOrderId = placeOrderId;
+	public void setPlaceorder(List<PlaceOrder> placeorder) {
+		this.placeorder = placeorder;
+	}
+	@JsonManagedReference
+	public List<Cart> getCart() {
+		return cart;
+	}
+
+	public void setCart(List<Cart> cart) {
+		this.cart = cart;
+	}
+
+	public Buyer(Long buyerId, String buyerName, String username, String password, String mobileNo, Double wallet,
+			List<PlaceOrder> placeorder, List<Cart> cart) {
+		super();
+		this.buyerId = buyerId;
+		this.buyerName = buyerName;
+		this.username = username;
+		this.password = password;
+		this.mobileNo = mobileNo;
+		this.wallet = wallet;
+		this.placeorder = placeorder;
+		this.cart = cart;
 	}
 
 	@Override
 	public String toString() {
 		return "Buyer [buyerId=" + buyerId + ", buyerName=" + buyerName + ", username=" + username + ", password="
-				+ password + ", mobileNo=" + mobileNo + ", wallet=" + wallet + ", placeOrderId=" + placeOrderId + "]";
+				+ password + ", mobileNo=" + mobileNo + ", wallet=" + wallet + ", placeorder=" + placeorder + ", cart="
+				+ cart + "]";
 	}
+
+	
 	
 }
