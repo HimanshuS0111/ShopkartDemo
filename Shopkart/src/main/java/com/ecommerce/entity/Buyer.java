@@ -12,11 +12,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+
 
 @Entity
 @Table(name="register_buyer")
@@ -34,7 +30,7 @@ public class Buyer {
 	@OneToMany(mappedBy = "buyerDetail")
 	private List<PlaceOrder> placeorder;
 	
-	@OneToMany(mappedBy = "cart")
+	@OneToMany(mappedBy = "buyer")
 	private List<Cart> cart;
 	
 	public Buyer() {
