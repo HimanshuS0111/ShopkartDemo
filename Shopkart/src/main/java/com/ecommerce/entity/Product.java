@@ -1,6 +1,5 @@
 package com.ecommerce.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,11 +8,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
-
-
-
-
 @Entity
 @Table(name="products")
 public class Product {
@@ -33,20 +27,6 @@ public class Product {
 	
 	public Product() {
 		
-	}
-
-
-	public Product(Long productId, String productName, String brand, int quantity, String description,
-			String productPrice, Long sellerId, Category category) {
-		super();
-		this.productId = productId;
-		this.productName = productName;
-		this.brand = brand;
-		this.quantity = quantity;
-		this.description = description;
-		this.productPrice = productPrice;
-		this.sellerId = sellerId;
-		this.category = category;
 	}
 
 
@@ -119,7 +99,7 @@ public class Product {
 		this.sellerId = sellerId;
 	}
 
-     @JsonBackReference
+	@JsonBackReference
 	public Category getCategory() {
 		return category;
 	}
@@ -130,9 +110,30 @@ public class Product {
 	}
 
 
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", brand=" + brand + ", quantity="
+				+ quantity + ", description=" + description + ", productPrice=" + productPrice + ", sellerId="
+				+ sellerId + ", category=" + category + "]";
+	}
+
+
+	public Product(Long productId, String productName, String brand, int quantity, String description,
+			String productPrice, Long sellerId, Category category) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.brand = brand;
+		this.quantity = quantity;
+		this.description = description;
+		this.productPrice = productPrice;
+		this.sellerId = sellerId;
+		this.category = category;
+	}
 	
 
 	
+
 	
 	
 }

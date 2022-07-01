@@ -34,20 +34,11 @@ public class Buyer {
 	@OneToMany(mappedBy = "buyerDetail")
 	private List<PlaceOrder> placeorder;
 	
+	@OneToMany(mappedBy = "cart")
+	private List<Cart> cart;
+	
 	public Buyer() {
 		
-	}
-
-	public Buyer(Long buyerId, String buyerName, String username, String password, String mobileNo, Double wallet,
-			List<PlaceOrder> placeorder) {
-		super();
-		this.buyerId = buyerId;
-		this.buyerName = buyerName;
-		this.username = username;
-		this.password = password;
-		this.mobileNo = mobileNo;
-		this.wallet = wallet;
-		this.placeorder = placeorder;
 	}
 
 	public Long getBuyerId() {
@@ -97,7 +88,7 @@ public class Buyer {
 	public void setWallet(Double wallet) {
 		this.wallet = wallet;
 	}
-    @JsonManagedReference
+	@JsonManagedReference
 	public List<PlaceOrder> getPlaceorder() {
 		return placeorder;
 	}
@@ -105,11 +96,33 @@ public class Buyer {
 	public void setPlaceorder(List<PlaceOrder> placeorder) {
 		this.placeorder = placeorder;
 	}
+	@JsonManagedReference
+	public List<Cart> getCart() {
+		return cart;
+	}
+
+	public void setCart(List<Cart> cart) {
+		this.cart = cart;
+	}
+
+	public Buyer(Long buyerId, String buyerName, String username, String password, String mobileNo, Double wallet,
+			List<PlaceOrder> placeorder, List<Cart> cart) {
+		super();
+		this.buyerId = buyerId;
+		this.buyerName = buyerName;
+		this.username = username;
+		this.password = password;
+		this.mobileNo = mobileNo;
+		this.wallet = wallet;
+		this.placeorder = placeorder;
+		this.cart = cart;
+	}
 
 	@Override
 	public String toString() {
 		return "Buyer [buyerId=" + buyerId + ", buyerName=" + buyerName + ", username=" + username + ", password="
-				+ password + ", mobileNo=" + mobileNo + ", wallet=" + wallet + ", placeorder=" + placeorder + "]";
+				+ password + ", mobileNo=" + mobileNo + ", wallet=" + wallet + ", placeorder=" + placeorder + ", cart="
+				+ cart + "]";
 	}
 
 	
