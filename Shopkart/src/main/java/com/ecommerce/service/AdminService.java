@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.ecommerce.entity.Admin;
 import com.ecommerce.entity.Buyer;
+import com.ecommerce.entity.PlaceOrder;
 import com.ecommerce.entity.Seller;
 import com.ecommerce.repo.AdminRepo;
 import com.ecommerce.repo.BuyerRepo;
+import com.ecommerce.repo.PlaceOrderRepo;
 import com.ecommerce.repo.ProductRepo;
 import com.ecommerce.repo.SellerRepo;
 @Service
@@ -25,6 +27,9 @@ public class AdminService {
 
 	@Autowired
 	ProductRepo productrepo;
+	
+	@Autowired
+	PlaceOrderRepo placeorderrepo;
 
 	public ResponseEntity<String> loginAdmin(String username, String password) {
 		if (username.equals(null) || username.equals("")) {
@@ -78,6 +83,13 @@ public class AdminService {
 		entity.setIsApproved("Yes");
 		sellerrepo.save(entity);
 		return new ResponseEntity("Seller Approved", HttpStatus.OK);
+		}
+	
+	public ResponseEntity<String> orderApproval(Long placeOrderId) {
+		PlaceOrder order = placeorderrepo.findById(placeOrderId).get();
+		order.setOrderStatus("Order Placed");
+		placeorderrepo.save(order);
+		return new ResponseEntity("Your Order succesfully place", HttpStatus.OK);
 		}
 	
 	

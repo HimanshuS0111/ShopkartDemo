@@ -1,11 +1,16 @@
 package com.ecommerce.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,15 +31,15 @@ public class Buyer {
 	private String mobileNo;
 	private Double wallet;
 	
-	@Column(name = "place_order_id")
-	private long placeOrderId;
+	@OneToMany(mappedBy = "buyerDetail")
+	private List<PlaceOrder> placeorder;
 	
 	public Buyer() {
 		
 	}
 
 	public Buyer(Long buyerId, String buyerName, String username, String password, String mobileNo, Double wallet,
-			long placeOrderId) {
+			List<PlaceOrder> placeorder) {
 		super();
 		this.buyerId = buyerId;
 		this.buyerName = buyerName;
@@ -42,7 +47,7 @@ public class Buyer {
 		this.password = password;
 		this.mobileNo = mobileNo;
 		this.wallet = wallet;
-		this.placeOrderId = placeOrderId;
+		this.placeorder = placeorder;
 	}
 
 	public Long getBuyerId() {
@@ -92,19 +97,21 @@ public class Buyer {
 	public void setWallet(Double wallet) {
 		this.wallet = wallet;
 	}
-
-	public long getPlaceOrderId() {
-		return placeOrderId;
+    @JsonManagedReference
+	public List<PlaceOrder> getPlaceorder() {
+		return placeorder;
 	}
 
-	public void setPlaceOrderId(long placeOrderId) {
-		this.placeOrderId = placeOrderId;
+	public void setPlaceorder(List<PlaceOrder> placeorder) {
+		this.placeorder = placeorder;
 	}
 
 	@Override
 	public String toString() {
 		return "Buyer [buyerId=" + buyerId + ", buyerName=" + buyerName + ", username=" + username + ", password="
-				+ password + ", mobileNo=" + mobileNo + ", wallet=" + wallet + ", placeOrderId=" + placeOrderId + "]";
+				+ password + ", mobileNo=" + mobileNo + ", wallet=" + wallet + ", placeorder=" + placeorder + "]";
 	}
+
+	
 	
 }
